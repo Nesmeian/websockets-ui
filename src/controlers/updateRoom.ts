@@ -1,11 +1,23 @@
 import WebSocket from 'ws';
 import db from '../dataBase/db/index';
 export default function updateRoom(ws: WebSocket): void {
-  const { room } = db;
-  const updateRoom = {
+  const { rooms } = db;
+  const newRoom = {
+    roomId: 1,
+    roomUsers: [
+      {
+        name: 'jack',
+        index: 1,
+      },
+    ],
+  };
+  rooms.push(newRoom);
+  const regRoom = {
     type: 'update_room',
-    data: JSON.stringify(room),
+    data: JSON.stringify(rooms),
     id: 0,
   };
-  ws.send(JSON.stringify(updateRoom));
+  console.log(rooms);
+  console.log(newRoom);
+  ws.send(JSON.stringify(regRoom));
 }

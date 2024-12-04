@@ -1,6 +1,7 @@
-const data = {
+import { DB } from '..//../interfacess/index';
+const data: DB = {
   id: [],
   index: [],
-  room: [],
+  rooms: [],
 };
 export default data;

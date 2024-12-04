@@ -10,5 +10,12 @@ export interface WSRes {
 export interface DB {
   id: string[];
   index: number[];
-  room: string[];
+  rooms: room[];
+}
+interface room {
+  roomId: number;
+  roomUsers: {
+    name: string;
+    index: number;
+  }[];
 }
