@@ -1,6 +1,13 @@
 import WebSocket from 'ws';
 import { WSRes } from 'src/interfacess';
-import { regUser, updateRoom, updateWinners } from '../controlers/index';
+import {
+  addUser,
+  createGame,
+  createRoom,
+  regUser,
+  updateRoom,
+  updateWinners,
+} from '../controlers/index';
 const WS_PORT = Number(process.env.WS_PORT) || 3000;
 const ws = new WebSocket.Server({ port: WS_PORT });
 
@@ -15,6 +22,12 @@ ws.on('connection', async (ws) => {
       regUser(message.data, ws);
       updateRoom(ws);
       updateWinners(ws);
+    }
+    if (message.type === 'create_room') {
+      createRoom(ws);
+      addUser(ws);
+      createGame(ws);
+      console.log('jack');
     }
     console.log(message);
   });
