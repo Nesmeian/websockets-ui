@@ -1,10 +1,10 @@
 import WebSocket from 'ws';
-export default function updateWinners(ws: WebSocket) {
+import db from '../dataBase/db';
+export default function updateWinners(ws: WebSocket): void {
   const winnersData = {
     type: 'update_winners',
     data: JSON.stringify([]),
-    id: 0,
+    id: db.id[db.index.length - 1],
   };
-  //   const winners = ;
-  //   ws.send();
+  ws.send(JSON.stringify(winnersData));
 }

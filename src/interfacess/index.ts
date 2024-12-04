@@ -10,4 +10,5 @@ export interface WSRes {
 export interface DB {
   id: string[];
   index: number[];
+  room: string[];
 }
