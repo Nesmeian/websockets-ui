@@ -7,3 +7,7 @@ export interface WSRes {
   data: string;
   id: number;
 }
+export interface DB {
+  id: string[];
+  index: number[];
+}

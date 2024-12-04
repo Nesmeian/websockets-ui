@@ -1,6 +1,6 @@
 import takeUsers from '../userManager';
 import fs from 'fs/promises';
-import { User } from '..//../interfacess/index';
+import { User } from '../../../interfacess/index';
 import pathToStorage from '../userStorage/storagePath';
 export default async function archiveUser(newUser: string): Promise<void> {
   const users: User[] = JSON.parse(await takeUsers());
