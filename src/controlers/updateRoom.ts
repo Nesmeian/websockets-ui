@@ -1,5 +1,6 @@
 import WebSocket from 'ws';
 import db from '../dataBase/db/index';
+import messageColor from '../utils/consoleLogMessageCollor';
 export default function updateRoom(ws: WebSocket): void {
   const { rooms } = db;
   const newRoom = {
@@ -17,7 +18,9 @@ export default function updateRoom(ws: WebSocket): void {
     data: JSON.stringify(rooms),
     id: 0,
   };
-  console.log(rooms);
-  console.log(newRoom);
+  console.log(
+    `${messageColor.blue}`,
+    `add new room ${JSON.stringify(newRoom)}`,
+  );
   ws.send(JSON.stringify(regRoom));
 }

@@ -1,9 +1,14 @@
+import messageColor from '../utils/consoleLogMessageCollor';
 import WebSocket from 'ws';
 export default function createRoom(ws: WebSocket): void {
-  const createRoom = {
+  const createRoomReg = {
     type: 'creat_room',
     data: JSON.stringify([]),
     id: 0,
   };
-  ws.send(JSON.stringify(createRoom));
+  console.log(
+    `${messageColor.blue}`,
+    `create game ${JSON.stringify(createRoomReg)}`,
+  );
+  ws.send(JSON.stringify(createRoomReg));
 }

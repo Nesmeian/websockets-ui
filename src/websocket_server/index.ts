@@ -8,6 +8,7 @@ import {
   updateRoom,
   updateWinners,
 } from '../controlers/index';
+import messageColor from '../utils/consoleLogMessageCollor';
 const WS_PORT = Number(process.env.WS_PORT) || 3000;
 const ws = new WebSocket.Server({ port: WS_PORT });
 
@@ -27,9 +28,8 @@ ws.on('connection', async (ws) => {
       createRoom(ws);
       addUser(ws);
       createGame(ws);
-      console.log('jack');
     }
-    console.log(message);
+    console.log(`${messageColor.green}`, message);
   });
   ws.on('close', () => {
     console.log('connection stop');
