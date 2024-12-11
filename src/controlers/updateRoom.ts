@@ -1,12 +1,9 @@
 import WebSocket from 'ws';
-import db from '../dataBase/db/index';
+import { data } from '../dataBase/db/index';
 import terminalMessage from '../utils/consoleLogMessageCollor';
-export default function updateRoom(
-  data: string,
-  ws: WebSocket,
-  reg: true | false,
-): void {
-  const { rooms, users } = db;
+import sendWsToAllUsers from '../utils/sendWsToAllUsers';
+export default function updateRoom(ws: WebSocket, reg: true | false): void {
+  const { rooms, users } = data;
   if (!reg) {
     const newRoom = {
       roomId: rooms.length,
@@ -22,7 +19,6 @@ export default function updateRoom(
       `${terminalMessage.blue}`,
       `update rooms ${JSON.stringify(rooms)}`,
     );
-    return;
   }
 
   const regRoom = {
@@ -34,5 +30,5 @@ export default function updateRoom(
     `${terminalMessage.blue}`,
     `add new room ${JSON.stringify(rooms)}`,
   );
-  ws.send(JSON.stringify(regRoom));
+  sendWsToAllUsers(JSON.stringify(regRoom));
 }

@@ -1,4 +1,5 @@
 import { DB } from '..//../interfacess/index';
+import WebSocket from 'ws';
 const data: DB = {
   id: 0,
   index: [],
@@ -6,4 +7,5 @@ const data: DB = {
   games: [],
   users: [],
 };
-export default data;
+const connectUsers: Set<WebSocket> = new Set();
+export { data, connectUsers };

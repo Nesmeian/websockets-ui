@@ -1,10 +1,11 @@
 import WebSocket from 'ws';
 import terminalMessage from '../utils/consoleLogMessageCollor';
-export default function addUserToRoom(ws: WebSocket): void {
+export default function addUserToRoom(ws: WebSocket, data: string): void {
+  const { indexRoom } = JSON.parse(data);
   const addUserReg = {
     type: 'add_user_to_room',
     data: JSON.stringify({
-      indexRoom: 1,
+      indexRoom: indexRoom,
     }),
   };
   console.log(

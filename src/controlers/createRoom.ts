@@ -1,4 +1,5 @@
-import data from '../dataBase/db';
+import sendWsToAllUsers from '../utils/sendWsToAllUsers';
+import { data } from '../dataBase/db';
 import terminalMessage from '../utils/consoleLogMessageCollor';
 import WebSocket from 'ws';
 export default function createRoom(ws: WebSocket): void {
@@ -12,5 +13,5 @@ export default function createRoom(ws: WebSocket): void {
     `${terminalMessage.blue}`,
     `create room ${JSON.stringify(createRoomReg)}`,
   );
-  ws.send(JSON.stringify(createRoomReg));
+  sendWsToAllUsers(JSON.stringify(createRoomReg));
 }

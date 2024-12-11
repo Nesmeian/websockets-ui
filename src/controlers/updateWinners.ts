@@ -1,15 +1,16 @@
 import WebSocket from 'ws';
-import db from '../dataBase/db';
+import { data } from '../dataBase/db';
 import terminalMessage from '../utils/consoleLogMessageCollor';
+import sendWsToAllUsers from '../utils/sendWsToAllUsers';
 export default function updateWinners(ws: WebSocket): void {
   const winnersData = {
     type: 'update_winners',
     data: JSON.stringify([]),
-    id: db.id,
+    id: data.id,
   };
   console.log(
     `${terminalMessage.blue}`,
     `update winner ${JSON.stringify(winnersData)}`,
   );
-  ws.send(JSON.stringify(winnersData));
+  sendWsToAllUsers(JSON.stringify(winnersData));
 }
