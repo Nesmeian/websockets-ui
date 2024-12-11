@@ -1,5 +1,5 @@
 export interface User {
-  username: string;
+  name: string;
   password: string;
 }
 export interface WSRes {
@@ -8,9 +8,11 @@ export interface WSRes {
   id: number;
 }
 export interface DB {
-  id: string[];
-  index: number[];
+  id: 0;
+  index: string[];
   rooms: room[];
+  games: string[];
+  users: User[];
 }
 interface room {
   roomId: number;

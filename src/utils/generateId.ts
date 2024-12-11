@@ -1,4 +1,5 @@
-import { v4 as randomId } from 'uuid';
-export default function idGenerator(): string {
-  return randomId();
+import { v4 as randomIndex } from 'uuid';
+
+export default function generateId(): string {
+  return randomIndex();
 }

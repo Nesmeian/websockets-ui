@@ -1,23 +1,34 @@
 import { archiveUser } from '../dataBase/usersData/index';
 import db from '../dataBase/db/index';
-import increaseAmount from '../utils/increaseAmount';
 import WebSocket from 'ws';
-import messageColor from '..//utils/consoleLogMessageCollor';
+import terminalMessage from '..//utils/consoleLogMessageCollor';
+import generateId from '../utils/generateId';
 export default function regUser(data: string, ws: WebSocket): void {
-  const { name } = JSON.parse(String(data));
+  const { name, password } = JSON.parse(String(data));
+  const { users } = db;
+  const regIndex = generateId();
+  const userInformation = {
+    name: name,
+    password: password,
+    index: regIndex,
+  };
 
-  increaseAmount(db);
+  users.push(userInformation);
   const regMessage = {
     type: 'reg',
     data: JSON.stringify({
       name: name,
-      index: db.index.length,
+      index: regIndex,
       error: false,
       errorText: 'Something go wrong',
     }),
-    id: db.id[db.index.length - 1],
+    id: db.id,
   };
+  db.index.push(regIndex);
   archiveUser(data);
-  console.log(`${messageColor.blue}`, `reg user ${JSON.stringify(regMessage)}`);
+  console.log(
+    `${terminalMessage.blue}`,
+    `reg user ${JSON.stringify(regMessage)}`,
+  );
   ws.send(JSON.stringify(regMessage));
 }

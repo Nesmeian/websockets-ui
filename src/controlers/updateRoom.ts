@@ -1,26 +1,38 @@
 import WebSocket from 'ws';
 import db from '../dataBase/db/index';
-import messageColor from '../utils/consoleLogMessageCollor';
-export default function updateRoom(ws: WebSocket): void {
-  const { rooms } = db;
-  const newRoom = {
-    roomId: 1,
-    roomUsers: [
-      {
-        name: 'jack',
-        index: 1,
-      },
-    ],
-  };
-  rooms.push(newRoom);
+import terminalMessage from '../utils/consoleLogMessageCollor';
+export default function updateRoom(
+  data: string,
+  ws: WebSocket,
+  reg: true | false,
+): void {
+  const { rooms, users } = db;
+  if (!reg) {
+    const newRoom = {
+      roomId: rooms.length,
+      roomUsers: [
+        {
+          name: users[rooms.length].name,
+          index: 1,
+        },
+      ],
+    };
+    rooms.push(newRoom);
+    console.log(
+      `${terminalMessage.blue}`,
+      `update rooms ${JSON.stringify(rooms)}`,
+    );
+    return;
+  }
+
   const regRoom = {
     type: 'update_room',
     data: JSON.stringify(rooms),
     id: 0,
   };
   console.log(
-    `${messageColor.blue}`,
-    `add new room ${JSON.stringify(newRoom)}`,
+    `${terminalMessage.blue}`,
+    `add new room ${JSON.stringify(rooms)}`,
   );
   ws.send(JSON.stringify(regRoom));
 }
