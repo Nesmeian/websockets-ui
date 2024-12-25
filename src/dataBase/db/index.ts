@@ -2,7 +2,6 @@ import { DB } from '..//../interfacess/index';
 import WebSocket from 'ws';
 const data: DB = {
   id: 0,
-  index: [],
   rooms: [],
   games: [],
   users: [],

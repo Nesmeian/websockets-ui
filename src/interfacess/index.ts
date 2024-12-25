@@ -1,6 +1,8 @@
+import WebSocket from "ws";
 export interface User {
   name: string;
   password: string;
+  id:string;
 }
 export interface WSRes {
   type: string;
@@ -10,7 +12,6 @@ export interface WSRes {
 
 export interface DB {
   id: 0;
-  index: string[];
   rooms: room[];
   games: string[];
   users: User[];
@@ -18,7 +19,10 @@ export interface DB {
 interface room {
   roomId: number;
   roomUsers: {
-    name: string;
+    name: string | undefined;
     index: number;
   }[];
+}
+export interface CustomWebSocket extends WebSocket {
+  userId: string; 
 }

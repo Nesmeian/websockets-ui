@@ -1,8 +1,10 @@
 import sendWsToAllUsers from '../utils/sendWsToAllUsers';
 import { data } from '../dataBase/db';
 import terminalMessage from '../utils/consoleLogMessageCollor';
-import WebSocket from 'ws';
-export default function createRoom(ws: WebSocket): void {
+import updateRoom from './updateRoom';
+import updateWinners from './updateWinners';
+import { CustomWebSocket } from 'src/interfacess';
+export default function createRoom(ws: CustomWebSocket): void {
   const { rooms } = data;
   const createRoomReg = {
     type: 'creat_room',
@@ -14,4 +16,6 @@ export default function createRoom(ws: WebSocket): void {
     `create room ${JSON.stringify(createRoomReg)}`,
   );
   sendWsToAllUsers(JSON.stringify(createRoomReg));
+  updateWinners();
+  updateRoom(ws, false);
 }

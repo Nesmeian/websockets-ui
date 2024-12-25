@@ -1,15 +1,18 @@
-import WebSocket from 'ws';
+import generateId from '../utils/generateId';
 import { data } from '../dataBase/db/index';
 import terminalMessage from '../utils/consoleLogMessageCollor';
 import sendWsToAllUsers from '../utils/sendWsToAllUsers';
-export default function updateRoom(ws: WebSocket, reg: true | false): void {
-  const { rooms, users } = data;
+import { CustomWebSocket } from 'src/interfacess';
+import searchUserById from '../dataBase/db/controlers/searchUserById'
+export default function updateRoom(ws:CustomWebSocket , reg: true | false): void {
+  const { rooms } = data;
+  const user=searchUserById(ws.userId)
   if (!reg) {
     const newRoom = {
-      roomId: rooms.length,
+      roomId: Number(generateId()),
       roomUsers: [
         {
-          name: users[rooms.length].name,
+          name: user?.name,
           index: 1,
         },
       ],
@@ -20,7 +23,6 @@ export default function updateRoom(ws: WebSocket, reg: true | false): void {
       `update rooms ${JSON.stringify(rooms)}`,
     );
   }
-
   const regRoom = {
     type: 'update_room',
     data: JSON.stringify(rooms),
