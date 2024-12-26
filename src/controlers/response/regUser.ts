@@ -1,6 +1,6 @@
-import { data } from '../dataBase/db/index';
-import terminalMessage from '..//utils/consoleLogMessageCollor';
-import generateId from '../utils/generateId';
+import { data } from '../../dataBase/db/index';
+import terminalMessage from '../../utils/consoleLogMessageCollor';
+import generateId from '../../utils/generateId';
 import { CustomWebSocket } from 'src/interfacess';
 export default function regUser(wsData: string, ws: CustomWebSocket): void {
   const { name, password } = JSON.parse(String(wsData));

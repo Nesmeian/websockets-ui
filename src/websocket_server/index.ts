@@ -16,7 +16,7 @@ const ws = new WebSocket.Server({ port: WS_PORT });
 ws.on('listening', () => {
   console.log(`WebSocket start on port ${WS_PORT}`);
 });
-ws.on('connection', async (ws:CustomWebSocket) => {
+ws.on('connection', async (ws: CustomWebSocket) => {
   console.log('connection start');
   connectUsers.add(ws);
   ws.on('message', (mes) => {
@@ -24,7 +24,7 @@ ws.on('connection', async (ws:CustomWebSocket) => {
     console.log(`${terminalMessage.green}`, message);
     if (message.type === 'reg') {
       regUser(message.data, ws);
-      updateRoom(ws, true);
+      updateRoom(ws);
       updateWinners();
     }
     if (message.type === 'create_room') {

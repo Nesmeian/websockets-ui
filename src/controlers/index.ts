@@ -1,6 +1,6 @@
-export { default as regUser } from './regUser';
-export { default as updateWinners } from './updateWinners';
-export { default as updateRoom } from './updateRoom';
-export { default as addUser } from './addUserToRoom';
-export { default as createRoom } from './createRoom';
-export { default as createGame } from './createGame';
+export { default as regUser } from './response/regUser';
+export { default as updateWinners } from './response/updateWinners';
+export { default as updateRoom } from './response/updateRoom';
+export { default as addUser } from './request/addUserToRoom';
+export { default as createRoom } from './request/createRoom';
+export { default as createGame } from './response/createGame';

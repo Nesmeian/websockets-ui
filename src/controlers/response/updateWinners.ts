@@ -1,6 +1,6 @@
-import { data } from "../dataBase/db";
-import terminalMessage from '../utils/consoleLogMessageCollor';
-import sendWsToAllUsers from '../utils/sendWsToAllUsers';
+import { data } from "../../dataBase/db";
+import terminalMessage from '../../utils/consoleLogMessageCollor';
+import sendWsToAllUsers from '../../utils/sendWsToAllUsers';
 export default function updateWinners(): void {
   const winnersData = {
     type: 'update_winners',
