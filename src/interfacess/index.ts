@@ -17,7 +17,7 @@ export interface DB {
   users: User[];
 }
 interface room {
-  roomId: number;
+  roomId: string;
   roomUsers: {
     name: string | undefined;
     index: number;

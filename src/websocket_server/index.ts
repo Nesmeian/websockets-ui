@@ -29,7 +29,6 @@ ws.on('connection', async (ws:CustomWebSocket) => {
     }
     if (message.type === 'create_room') {
       createRoom(ws);
-      console.log(ws.userId)
     }
     if (message.type === 'add_user_to_room') {
       addUser(ws, message.data);
