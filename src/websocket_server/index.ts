@@ -9,7 +9,7 @@ import {
 } from '../controlers/index';
 
 import terminalMessage from '../utils/consoleLogMessageCollor';
-import { connectUsers } from '..`/dataBase/db';
+import { connectUsers } from '../dataBase/db';
 const WS_PORT = Number(process.env.WS_PORT) || 3000;
 const ws = new WebSocket.Server({ port: WS_PORT });
 

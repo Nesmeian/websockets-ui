@@ -1,7 +1,13 @@
-import { CustomWebSocket } from '../interfacess/index';
+import { connectUsers } from '../dataBase/db';
+import WebSocket from 'ws';
 export default function sendWsToChoseConnectsions(
-  ws: CustomWebSocket,
+  message: string,
   usersIds: string[],
 ): void {
-  console.log('USER ID', ws.userId);
+  usersIds.forEach((userId) => {
+    const client = connectUsers.get(userId);
+    if (client && client.readyState === WebSocket.OPEN) {
+      client.send(message);
+    }
+  });
 }

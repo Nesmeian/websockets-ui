@@ -3,7 +3,6 @@ import { CustomWebSocket } from 'src/interfacess';
 import { data as db } from '../../dataBase/db';
 import updateRoom from '../response/updateRoom';
 import createGame from '../response/createGame';
-import sendWsToChoseConnectsions from '../../utils/sendWsToChoseConnects';
 export default function addUserToRoom(ws: CustomWebSocket, data: string): void {
   const { indexRoom } = JSON.parse(data);
   const { rooms, users } = db;
@@ -16,7 +15,6 @@ export default function addUserToRoom(ws: CustomWebSocket, data: string): void {
   if (!checkPlayer) {
     updateRoom(ws, 'add_player', indexRoom);
     createGame(ws, indexRoom);
-    sendWsToChoseConnectsions(ws, indexRoom);
     console.log(`${terminalMessage.blue}`, `add user to room`);
   }
 }

@@ -1,5 +1,5 @@
 import generateId from '../../utils/generateId';
-import { connectUsers, data } from '../../dataBase/db/index';
+import { data } from '../../dataBase/db/index';
 import terminalMessage from '../../utils/consoleLogMessageCollor';
 import sendWsToAllUsers from '../../utils/sendWsToAllUsers';
 import { CustomWebSocket } from 'src/interfacess';
@@ -49,6 +49,5 @@ export default function updateRoom(
     `${terminalMessage.blue}`,
     `add new room ${JSON.stringify(rooms)}`,
   );
-  console.log('Jack', connectUsers);
   sendWsToAllUsers(JSON.stringify(regRoom));
 }
