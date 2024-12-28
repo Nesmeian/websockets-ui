@@ -9,7 +9,7 @@ import {
 } from '../controlers/index';
 
 import terminalMessage from '../utils/consoleLogMessageCollor';
-import { connectUsers } from '../dataBase/db';
+import { connectUsers } from '..`/dataBase/db';
 const WS_PORT = Number(process.env.WS_PORT) || 3000;
 const ws = new WebSocket.Server({ port: WS_PORT });
 
@@ -18,7 +18,6 @@ ws.on('listening', () => {
 });
 ws.on('connection', async (ws: CustomWebSocket) => {
   console.log('connection start');
-  connectUsers.add(ws);
   ws.on('message', (mes) => {
     const message: WSRes = JSON.parse(String(mes));
     console.log(`${terminalMessage.green}`, message);
@@ -35,7 +34,7 @@ ws.on('connection', async (ws: CustomWebSocket) => {
     }
   });
   ws.on('close', () => {
-    connectUsers.delete(ws);
+    connectUsers.delete(ws.userId);
     console.log('connection stop');
   });
 });

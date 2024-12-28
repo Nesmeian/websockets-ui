@@ -1,3 +1,4 @@
+import { addUser } from '..//..//websocket_server/wsControlers/index';
 import { data } from '../../dataBase/db/index';
 import terminalMessage from '../../utils/consoleLogMessageCollor';
 import generateId from '../../utils/generateId';
@@ -11,7 +12,8 @@ export default function regUser(wsData: string, ws: CustomWebSocket): void {
     password: password,
     id: regIndex,
   };
-  ws.userId=regIndex
+
+  addUser(regIndex, ws);
   users.push(userInformation);
   const regMessage = {
     type: 'reg',

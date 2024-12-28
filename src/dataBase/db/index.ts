@@ -6,5 +6,5 @@ const data: DB = {
   games: [],
   users: [],
 };
-const connectUsers: Set<WebSocket> = new Set();
+const connectUsers: Map<string, WebSocket> = new Map();
 export { data, connectUsers };
