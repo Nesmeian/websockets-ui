@@ -1,8 +1,8 @@
-import WebSocket from "ws";
+import WebSocket from 'ws';
 export interface User {
   name: string;
   password: string;
-  id:string;
+  id: string;
 }
 export interface WSRes {
   type: string;
@@ -24,5 +24,19 @@ interface room {
   }[];
 }
 export interface CustomWebSocket extends WebSocket {
-  userId: string; 
+  userId: string;
+}
+export interface AddShipsData {
+  gameId: number;
+  ships: ShipsData[];
+}
+interface ShipsData {
+  position: ShipLocation;
+  direction: boolean;
+  type: string;
+  length: number;
+}
+interface ShipLocation {
+  x: number;
+  y: number;
 }

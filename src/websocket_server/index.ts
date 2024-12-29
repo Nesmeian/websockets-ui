@@ -1,6 +1,7 @@
 import WebSocket from 'ws';
 import { CustomWebSocket, WSRes } from 'src/interfacess';
 import {
+  addShips,
   addUser,
   createRoom,
   regUser,
@@ -32,6 +33,10 @@ ws.on('connection', async (ws: CustomWebSocket) => {
     if (message.type === 'add_user_to_room') {
       addUser(ws, message.data);
     }
+    if (message.type === 'add_ships') {
+      addShips(ws, message.data);
+    }
+    console.log(message.type);
   });
   ws.on('close', () => {
     connectUsers.delete(ws.userId);
