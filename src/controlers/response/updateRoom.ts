@@ -3,7 +3,7 @@ import { data } from '../../dataBase/db/index';
 import terminalMessage from '../../utils/consoleLogMessageCollor';
 import sendWsToAllUsers from '../../utils/sendWsToAllUsers';
 import { CustomWebSocket } from 'src/interfacess';
-import searchUserById from '../../dataBase/db/controlers/searchUserById';
+import searchUserById from '..//../dataBase/db/utils/searchUserById';
 export default function updateRoom(
   ws: CustomWebSocket,
   purpose?: undefined | 'create_game' | 'add_player',

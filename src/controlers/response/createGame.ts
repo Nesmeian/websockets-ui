@@ -1,5 +1,5 @@
 import { CustomWebSocket } from 'src/interfacess';
-import searchRoomPlayersNames from '..//../dataBase/db/controlers/searchRoomUsers';
+import searchRoomPlayersNames from '..//..//dataBase/db/utils/searchRoomUsers';
 import terminalMessage from '../../utils/consoleLogMessageCollor';
 import sendWsToChoseConnectsions from '..//..//..//src/utils/sendWsToChoseConnects';
 import { data } from '..//..//dataBase/db';
@@ -10,9 +10,6 @@ export default function createGame(
 ): void {
   const { rooms } = data;
   const gameRoomIndex = rooms.findIndex(({ roomId }) => roomId === indexRoom);
-  rooms.splice(gameRoomIndex, 1);
-  console.log('jack', rooms);
-  updateRoom(ws);
   const usersNames = searchRoomPlayersNames(indexRoom);
   const usersIds = usersNames.map(({ id }) => id);
   const createGameReg = {
@@ -24,6 +21,8 @@ export default function createGame(
     id: 0,
   };
   sendWsToChoseConnectsions(JSON.stringify(createGameReg), usersIds);
+  rooms.splice(gameRoomIndex, 1);
+  updateRoom(ws);
   console.log(
     `${terminalMessage.blue}`,
     `create game ${JSON.stringify(createGameReg)}`,
