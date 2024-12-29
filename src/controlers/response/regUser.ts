@@ -14,8 +14,10 @@ export default function regUser(wsData: string, ws: CustomWebSocket): void {
     id: regIndex,
   };
   const { error, errorText } = checkAuth(userInformation);
-  addUser(regIndex, ws);
-  users.push(userInformation);
+  if (error === false) {
+    addUser(regIndex, ws);
+    users.push(userInformation);
+  }
   const regMessage = {
     type: 'reg',
     data: JSON.stringify({
