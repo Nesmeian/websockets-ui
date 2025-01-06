@@ -13,7 +13,7 @@ export interface WSRes {
 export interface DB {
   id: 0;
   rooms: room[];
-  games: string[];
+  games: Player[];
   users: User[];
 }
 interface room {
@@ -25,11 +25,13 @@ interface room {
 }
 export interface CustomWebSocket extends WebSocket {
   userId: string;
+  userGameId?: string;
 }
 export interface AddShipsData {
   gameId: number;
   ships: ShipsData[];
 }
+
 interface ShipsData {
   position: ShipLocation;
   direction: boolean;
@@ -39,4 +41,8 @@ interface ShipsData {
 interface ShipLocation {
   x: number;
   y: number;
+}
+export interface Player {
+  indexPlayer: number;
+  ships: ShipsData[] | undefined;
 }
