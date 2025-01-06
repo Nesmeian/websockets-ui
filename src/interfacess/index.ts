@@ -1,4 +1,17 @@
 import WebSocket from 'ws';
+
+export interface DB {
+  id: 0;
+  rooms: room[];
+  games: Game[];
+  users: User[];
+}
+
+interface Game {
+  id: string;
+  game?: Player[] | string[];
+}
+
 export interface User {
   name: string;
   password: string;
@@ -10,12 +23,6 @@ export interface WSRes {
   id: number;
 }
 
-export interface DB {
-  id: 0;
-  rooms: room[];
-  games: Player[];
-  users: User[];
-}
 interface room {
   roomId: string;
   roomUsers: {
@@ -43,6 +50,6 @@ interface ShipLocation {
   y: number;
 }
 export interface Player {
-  indexPlayer: number;
+  idPlayer: string;
   ships: ShipsData[] | undefined;
 }

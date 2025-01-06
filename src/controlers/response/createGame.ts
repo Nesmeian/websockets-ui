@@ -23,7 +23,8 @@ export default function createGame(
   addGameIdToUser(JSON.stringify(createGameReg), usersIds, indexRoom);
   rooms.splice(gameRoomIndex, 1);
   updateRoom(ws);
-  games.push();
+  const newGame = { id: indexRoom, game: [] };
+  games.push(newGame);
   console.log(
     `${terminalMessage.blue}`,
     `create game ${JSON.stringify(createGameReg)}`,

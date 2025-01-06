@@ -1,5 +1,5 @@
 import startGame from '../response/startGame';
-// import { data } from '..//../dataBase/db';
+import { data } from '..//../dataBase/db';
 import {
   AddShipsData,
   CustomWebSocket,
@@ -10,13 +10,14 @@ export default function addShips(
   messageData: string,
 ): void {
   startGame(ws);
-  // const { games } = data;
-  const game: Player[] = [];
+  const { games } = data;
+  const currentGame = games.find(({ id }) => id === ws.userGameId);
   const shipsData: AddShipsData = JSON.parse(messageData);
   const player: Player = {
-    indexPlayer: game.length,
+    idPlayer: ws.userId,
     ships: shipsData.ships.map((ship) => ship),
   };
-  game.push(player);
-  console.log('I want to check id', ws.userGameId);
+  (currentGame?.game as Player[]).push(player);
+  console.log(games, 'Games');
+  console.log(currentGame, 'Game');
 }
