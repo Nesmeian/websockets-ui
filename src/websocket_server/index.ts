@@ -10,7 +10,8 @@ import {
 } from '../controlers/index';
 
 import terminalMessage from '../utils/consoleLogMessageCollor';
-import { connectUsers } from '../dataBase/db';
+import deleteWsUser from '../utils/deleteUser';
+
 const WS_PORT = Number(process.env.WS_PORT) || 3000;
 const ws = new WebSocket.Server({ port: WS_PORT });
 
@@ -39,7 +40,6 @@ ws.on('connection', async (ws: CustomWebSocket) => {
     console.log(message.type);
   });
   ws.on('close', () => {
-    connectUsers.delete(ws.userId);
-    console.log('connection stop');
+    deleteWsUser(ws, ws.userId);
   });
 });
