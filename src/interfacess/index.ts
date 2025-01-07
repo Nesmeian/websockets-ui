@@ -7,9 +7,9 @@ export interface DB {
   users: User[];
 }
 
-interface Game {
+export interface Game {
   id: string;
-  game?: Player[] | string[];
+  game?: Player[];
 }
 
 export interface User {
@@ -51,5 +51,5 @@ interface ShipLocation {
 }
 export interface Player {
   idPlayer: string;
-  ships: ShipsData[] | undefined;
+  ships: ShipsData[];
 }

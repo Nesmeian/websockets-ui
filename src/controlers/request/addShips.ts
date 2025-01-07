@@ -3,13 +3,13 @@ import { data } from '..//../dataBase/db';
 import {
   AddShipsData,
   CustomWebSocket,
+  Game,
   Player,
 } from '..//..//interfacess/index';
 export default function addShips(
   ws: CustomWebSocket,
   messageData: string,
 ): void {
-  startGame(ws);
   const { games } = data;
   const currentGame = games.find(({ id }) => id === ws.userGameId);
   const shipsData: AddShipsData = JSON.parse(messageData);
@@ -18,6 +18,5 @@ export default function addShips(
     ships: shipsData.ships.map((ship) => ship),
   };
   (currentGame?.game as Player[]).push(player);
-  console.log(games, 'Games');
-  console.log(currentGame, 'Game');
+  startGame(ws, currentGame as Game);
 }
