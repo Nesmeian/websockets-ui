@@ -6,3 +6,5 @@ export { default as createRoom } from './request/createRoom';
 export { default as createGame } from './response/createGame';
 export { default as startGame } from './response/startGame';
 export { default as addShips } from './request/addShips';
+export { default as regAttack } from './request/regAttack';
+export { default as resAttack } from './response/resAttack';

@@ -4,6 +4,7 @@ import {
   addShips,
   addUser,
   createRoom,
+  regAttack,
   regUser,
   updateRoom,
   updateWinners,
@@ -37,7 +38,10 @@ ws.on('connection', async (ws: CustomWebSocket) => {
     if (message.type === 'add_ships') {
       addShips(ws, message.data);
     }
-    console.log(message.type);
+    if (message.type === 'attack') {
+      regAttack(message.data);
+    }
+    console.log(terminalMessage.green, `${message.type} ${message.data}`);
   });
   ws.on('close', () => {
     deleteWsUser(ws, ws.userId);

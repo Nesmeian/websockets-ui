@@ -12,21 +12,15 @@ export default function createGame(
   const gameRoomIndex = rooms.findIndex(({ roomId }) => roomId === indexRoom);
   const usersNames = searchRoomPlayersNames(indexRoom);
   const usersIds = usersNames.map(({ id }) => id);
-  const createGameReg = {
-    type: 'create_game',
-    data: JSON.stringify({
-      idGame: 1,
-      idPlayer: 1,
-    }),
-    id: 0,
-  };
-  addGameIdToUser(JSON.stringify(createGameReg), usersIds, indexRoom);
+
+  addGameIdToUser(usersIds, indexRoom);
   rooms.splice(gameRoomIndex, 1);
   updateRoom(ws);
   const newGame = { id: indexRoom, game: [] };
   games.push(newGame);
-  console.log(
-    `${terminalMessage.blue}`,
-    `create game ${JSON.stringify(createGameReg)}`,
-  );
+  // console.log(
+  //   `${terminalMessage.blue}`,
+  //   `create game ${JSON.stringify(createGameReg)}`,
+  // );
+  console.log('Игры', games);
 }

@@ -1,17 +1,18 @@
 import sendWsToChoseConnectsions from '..//..//utils/sendWsToChoseConnects';
 import { Game } from '../../interfacess';
-export default function turn(currentGame: Game, next?: boolean): void {
+import terminalMessage from '..//../utils/consoleLogMessageCollor';
+export default function turn(currentGame: Game, id: string): void {
   if (currentGame) {
-    currentGame.game?.forEach((players, i) => {
-      const index: number = next ? i + 1 : i;
+    currentGame.game?.forEach((players) => {
       const resData = {
         type: 'turn',
         data: JSON.stringify({
-          currentPlayer: index,
+          currentPlayer: id,
         }),
         id: 0,
       };
       sendWsToChoseConnectsions(JSON.stringify(resData), [players.idPlayer]);
+      console.log(terminalMessage.blue, `Turn ${resData}`);
     });
   }
 }

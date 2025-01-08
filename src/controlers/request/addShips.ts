@@ -18,5 +18,5 @@ export default function addShips(
     ships: shipsData.ships.map((ship) => ship),
   };
   (currentGame?.game as Player[]).push(player);
-  startGame(ws, currentGame as Game);
+  startGame(currentGame as Game);
 }
