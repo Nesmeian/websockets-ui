@@ -1,11 +1,13 @@
 import sendWsToChoseConnectsions from '..//../utils/sendWsToChoseConnects';
-import { Game, ShipLocation } from '..//../interfacess';
-
+import { Game, ShipLocation, ShipsData } from '..//../interfacess';
+import checkAttack from '..//../dataBase/db/utils/checkAttack';
 export default function resAttack(
   target: ShipLocation,
   currentPlayer: string,
   currentGame: Game,
+  opponentShips: ShipsData[],
 ): void {
+  const status = checkAttack(opponentShips, target);
   const resData = {
     type: 'attack',
     data: JSON.stringify({
@@ -14,7 +16,7 @@ export default function resAttack(
         y: target.y,
       },
       currentPlayer: currentPlayer,
-      status: 'shot',
+      status: status,
     }),
   };
   console.log(target, 'target');

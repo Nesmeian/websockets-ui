@@ -14,5 +14,5 @@ export default function regAttack(message: string): void {
   );
   const currentPlayer: string = currentGame?.turn ?? '';
   const opponentShips: ShipsData[] = opponent?.ships ?? [];
-  resAttack(target, currentPlayer, currentGame);
+  resAttack(target, currentPlayer, currentGame, opponentShips);
 }
