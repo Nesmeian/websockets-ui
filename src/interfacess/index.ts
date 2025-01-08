@@ -12,7 +12,6 @@ export interface Game {
   players?: Player[];
   turn?: string;
 }
-
 export interface User {
   name: string;
   password: string;
@@ -40,13 +39,13 @@ export interface AddShipsData {
   ships: ShipsData[];
 }
 
-interface ShipsData {
+export interface ShipsData {
   position: ShipLocation;
   direction: boolean;
   type: string;
   length: number;
 }
-interface ShipLocation {
+export interface ShipLocation {
   x: number;
   y: number;
 }
