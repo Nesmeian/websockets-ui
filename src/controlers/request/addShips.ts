@@ -17,6 +17,6 @@ export default function addShips(
     idPlayer: ws.userId,
     ships: shipsData.ships.map((ship) => ship),
   };
-  (currentGame?.game as Player[]).push(player);
+  (currentGame?.players as Player[]).push(player);
   startGame(currentGame as Game);
 }

@@ -3,7 +3,7 @@ import { Game } from '../../interfacess';
 import terminalMessage from '..//../utils/consoleLogMessageCollor';
 export default function turn(currentGame: Game, id: string): void {
   if (currentGame) {
-    currentGame.game?.forEach((players) => {
+    currentGame.players?.forEach((players) => {
       const resData = {
         type: 'turn',
         data: JSON.stringify({
@@ -12,7 +12,8 @@ export default function turn(currentGame: Game, id: string): void {
         id: 0,
       };
       sendWsToChoseConnectsions(JSON.stringify(resData), [players.idPlayer]);
-      console.log(terminalMessage.blue, `Turn ${resData}`);
+      currentGame.turn = id;
+      console.log(terminalMessage.blue, `Turn ${JSON.stringify(resData)}`);
     });
   }
 }

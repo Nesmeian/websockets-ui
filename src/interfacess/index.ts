@@ -9,7 +9,8 @@ export interface DB {
 
 export interface Game {
   id: string;
-  game?: Player[];
+  players?: Player[];
+  turn?: string;
 }
 
 export interface User {
