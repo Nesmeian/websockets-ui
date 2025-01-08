@@ -19,7 +19,7 @@ export default function startGame(
         console.log(JSON.parse(resData.data));
         sendWsToChoseConnectsions(JSON.stringify(resData), [e.idPlayer]);
         if (i + 1 === currentGame.game?.length) {
-          turn(ws, currentGame);
+          turn(currentGame);
         }
       });
     }
