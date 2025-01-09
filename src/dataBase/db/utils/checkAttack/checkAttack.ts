@@ -1,33 +1,21 @@
 import { Player, ShipLocation } from '../../../../interfacess';
 import checkNearSells from './checkNearSells';
+import attackData from './attackData';
 export default function checkAttack(
   opponent: Player,
   target: ShipLocation,
-): string {
+  currentPlayer: string,
+  playersIds: string[],
+): void {
   const opponentBoard = opponent.board;
   const { x, y } = target;
   if (opponentBoard[y][x] === 1) {
     if (!checkNearSells(opponentBoard, target)) {
-      return 'killed';
+      attackData(currentPlayer, 'killed', target, playersIds, opponentBoard);
     } else {
-      return 'shot';
+      attackData(currentPlayer, 'shot', target, playersIds);
     }
   } else {
-    return 'miss';
+    attackData(currentPlayer, 'miss', target, playersIds);
   }
-  // if (biteShip) {
-  //   console.log('find Shipt');
-  //   biteShip.length--;
-  //   if (biteShip.length === 0) {
-  //     console.log('kill ship');
-  //     return 'killed';
-  //   } else {
-  //     console.log('shoot ship');
-  //     return 'shot';
-  //   }
-  // } else {
-  //   console.log('miss ship');
-  //   return 'miss';
-  // }
-  return '';
 }
