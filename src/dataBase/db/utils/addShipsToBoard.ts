@@ -1,9 +1,9 @@
 import { ShipsData } from '../../../interfacess';
 
 export default function addShipsToBoard(
-  matrix: number[][],
+  matrix: string[][],
   ship: ShipsData,
-): number[][] {
+): string[][] {
   const y = ship.position.y;
   const x = ship.position.x;
   if (ship.length > 1) {
@@ -11,17 +11,17 @@ export default function addShipsToBoard(
       let count = 0;
       while (count < ship.length) {
         count++;
-        matrix[y][x - 1 + count] = 1;
+        matrix[y][x - 1 + count] = 'ship';
       }
     } else {
       let count = 0;
       while (count < ship.length) {
         count++;
-        matrix[y - 1 + count][x] = 1;
+        matrix[y - 1 + count][x] = 'ship';
       }
     }
   } else {
-    matrix[ship.position.y][ship.position.x] = 1;
+    matrix[ship.position.y][ship.position.x] = 'ship';
   }
   return matrix;
 }

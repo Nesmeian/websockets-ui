@@ -52,5 +52,5 @@ export interface ShipLocation {
 export interface Player {
   idPlayer: string;
   ships: ShipsData[];
-  board: number[][];
+  board: string[][];
 }

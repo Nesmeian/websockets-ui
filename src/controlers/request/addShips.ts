@@ -15,7 +15,7 @@ export default function addShips(
   const currentGame = games.find(({ id }) => id === ws.userGameId);
   const shipsData: AddShipsData = JSON.parse(messageData);
   const length = 10;
-  const board = Array.from({ length }, () => Array(length).fill('0'));
+  const board = Array.from({ length }, () => Array(length).fill('empty'));
   shipsData.ships.forEach((ship) => addShipsToBoard(board, ship));
   const player: Player = {
     idPlayer: ws.userId,
@@ -23,6 +23,6 @@ export default function addShips(
     board: board,
   };
   (currentGame?.players as Player[]).push(player);
-  console.log(player.board);
+  console.log(player.board, 'check board');
   startGame(currentGame as Game);
 }

@@ -6,7 +6,8 @@ export default function attackData(
   status: string,
   target: ShipLocation,
   playersIds: string[],
-  opponentBoard?: number[][],
+  opponentBoard: string[][],
+  shottedShip?: ShipLocation[],
 ): void {
   const { x, y } = target;
   const resData = JSON.stringify({
@@ -20,9 +21,18 @@ export default function attackData(
       status: status,
     }),
   });
-  if (status === 'killed' && opponentBoard) {
-    collectCellsIfKilled(playersIds, currentPlayer, opponentBoard, target);
+  if (status === 'killed' && shottedShip) {
+    collectCellsIfKilled(playersIds, currentPlayer, opponentBoard, shottedShip);
     return;
+  }
+  if (status === 'shot') {
+    opponentBoard[y][x] = 'shot';
+  }
+  if (status === 'miss') {
+    console.log(opponentBoard);
+    if (opponentBoard[y][x] != 'shot') {
+      opponentBoard[y][x] = 'miss';
+    }
   }
   sendWsToChoseConnectsions(resData, playersIds);
 }

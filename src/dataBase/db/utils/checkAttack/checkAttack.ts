@@ -1,6 +1,7 @@
 import { Player, ShipLocation } from '../../../../interfacess';
 import checkNearSells from './checkNearSells';
 import attackData from './attackData';
+import addShottedCells from './addShottedCells';
 export default function checkAttack(
   opponent: Player,
   target: ShipLocation,
@@ -9,13 +10,26 @@ export default function checkAttack(
 ): void {
   const opponentBoard = opponent.board;
   const { x, y } = target;
-  if (opponentBoard[y][x] === 1) {
+  if (opponentBoard[y][x] === 'ship') {
+    let status;
     if (!checkNearSells(opponentBoard, target)) {
-      attackData(currentPlayer, 'killed', target, playersIds, opponentBoard);
+      const shottedShip = addShottedCells(opponentBoard, target);
+      if (shottedShip) {
+        status = 'killed';
+        attackData(
+          currentPlayer,
+          status,
+          target,
+          playersIds,
+          opponentBoard,
+          shottedShip,
+        );
+      }
     } else {
-      attackData(currentPlayer, 'shot', target, playersIds);
+      status = 'shot';
+      attackData(currentPlayer, status, target, playersIds, opponentBoard);
     }
-  } else {
-    attackData(currentPlayer, 'miss', target, playersIds);
+  } else if (opponentBoard[y][x] !== 'ship' && opponentBoard[y][x] !== 'shot') {
+    attackData(currentPlayer, 'miss', target, playersIds, opponentBoard);
   }
 }

@@ -1,6 +1,6 @@
 import { ShipLocation } from '../../../../interfacess';
 export default function checkNearSells(
-  opponentBoard: number[][],
+  opponentBoard: string[][],
   target: ShipLocation,
 ): boolean {
   const { x, y } = target;
@@ -15,7 +15,7 @@ export default function checkNearSells(
       const newX = x + dx;
 
       if (newY >= 0 && newY < rows && newX >= 0 && newX < cols) {
-        if (opponentBoard[newY][newX] === 1) {
+        if (opponentBoard[newY][newX] === 'ship') {
           return true;
         }
       }
