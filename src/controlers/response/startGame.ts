@@ -16,7 +16,6 @@ export default function startGame(currentGame: Game): void {
         });
         sendWsToChoseConnectsions(resData, [e.idPlayer]);
         if (i + 1 === currentGame.players?.length) {
-          console.log(e.idPlayer, 'Show id Player');
           turn(currentGame, e.idPlayer);
         }
 
