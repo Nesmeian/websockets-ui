@@ -1,13 +1,13 @@
 import sendWsToChoseConnectsions from '..//../utils/sendWsToChoseConnects';
-import { Game, ShipLocation, ShipsData } from '..//../interfacess';
-import checkAttack from '..//../dataBase/db/utils/checkAttack';
+import { Game, Player, ShipLocation } from '..//../interfacess';
+import checkAttack from '../../dataBase/db/utils/checkAttack/checkAttack';
 export default function resAttack(
   target: ShipLocation,
   currentPlayer: string,
   currentGame: Game,
-  opponentShips: ShipsData[],
+  opponent: Player,
 ): void {
-  const status = checkAttack(opponentShips, target);
+  const status = checkAttack(opponent, target);
   const resData = {
     type: 'attack',
     data: JSON.stringify({

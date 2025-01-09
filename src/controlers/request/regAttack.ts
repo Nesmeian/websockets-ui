@@ -1,4 +1,3 @@
-import { ShipsData } from '..//../interfacess';
 import { data } from '..//../dataBase/db/index';
 import resAttack from '../response/resAttack';
 export default function regAttack(message: string): void {
@@ -12,7 +11,9 @@ export default function regAttack(message: string): void {
   const opponent = currentGame?.players?.find(
     ({ idPlayer }) => indexPlayer !== idPlayer,
   );
+  if (!opponent) {
+    return;
+  }
   const currentPlayer: string = currentGame?.turn ?? '';
-  const opponentShips: ShipsData[] = opponent?.ships ?? [];
-  resAttack(target, currentPlayer, currentGame, opponentShips);
+  resAttack(target, currentPlayer, currentGame, opponent);
 }
