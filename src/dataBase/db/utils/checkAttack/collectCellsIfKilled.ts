@@ -9,10 +9,8 @@ export default function collectCellsIfKilled(
 ): void {
   const rows = board.length;
   const cols = board[0].length;
-
+  const result: ShipLocation[] = [];
   shottedShip.forEach(({ x, y }) => {
-    const result = [];
-
     for (let dy = -1; dy <= 1; dy++) {
       for (let dx = -1; dx <= 1; dx++) {
         if (dy === 0 && dx === 0) continue;
@@ -27,36 +25,36 @@ export default function collectCellsIfKilled(
         }
       }
     }
-
-    // Отправляем сообщения о пропущенных клетках
-    result.forEach(({ x: missX, y: missY }) => {
-      const resData = JSON.stringify({
-        type: 'attack',
-        data: JSON.stringify({
-          position: {
-            x: missX,
-            y: missY,
-          },
-          currentPlayer: currentPlayer,
-          status: 'miss',
-        }),
-      });
-      sendWsToChoseConnectsions(resData, playersIds);
-    });
-    shottedShip.forEach(({ x, y }) => {
-      const resData = JSON.stringify({
-        type: 'attack',
-        data: JSON.stringify({
-          position: {
-            x: x,
-            y: y,
-          },
-          currentPlayer: currentPlayer,
-          status: 'killed',
-        }),
-      });
-      board[y][x] = 'killed';
-      sendWsToChoseConnectsions(resData, playersIds);
-    });
   });
+  result.forEach(({ x: missX, y: missY }) => {
+    const resData = JSON.stringify({
+      type: 'attack',
+      data: JSON.stringify({
+        position: {
+          x: missX,
+          y: missY,
+        },
+        currentPlayer: currentPlayer,
+        status: 'miss',
+      }),
+    });
+    board[missY][missX] = 'miss';
+    sendWsToChoseConnectsions(resData, playersIds);
+  });
+  shottedShip.forEach(({ x, y }) => {
+    const resData = JSON.stringify({
+      type: 'attack',
+      data: JSON.stringify({
+        position: {
+          x: x,
+          y: y,
+        },
+        currentPlayer: currentPlayer,
+        status: 'killed',
+      }),
+    });
+    board[y][x] = 'killed';
+    sendWsToChoseConnectsions(resData, playersIds);
+  });
+  console.log(board);
 }

@@ -24,12 +24,15 @@ export default function checkAttack(
           opponentBoard,
           shottedShip,
         );
+      } else {
+        status = 'shot';
+        attackData(currentPlayer, status, target, playersIds, opponentBoard);
       }
     } else {
       status = 'shot';
       attackData(currentPlayer, status, target, playersIds, opponentBoard);
     }
-  } else if (opponentBoard[y][x] !== 'ship' && opponentBoard[y][x] !== 'shot') {
+  } else if (opponentBoard[y][x] == 'empty') {
     attackData(currentPlayer, 'miss', target, playersIds, opponentBoard);
   }
 }

@@ -29,8 +29,7 @@ export default function attackData(
     opponentBoard[y][x] = 'shot';
   }
   if (status === 'miss') {
-    console.log(opponentBoard);
-    if (opponentBoard[y][x] != 'shot') {
+    if (opponentBoard[y][x] === 'empty') {
       opponentBoard[y][x] = 'miss';
     }
   }
