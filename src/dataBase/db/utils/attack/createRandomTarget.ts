@@ -3,20 +3,18 @@ export default function createRandomTarget(board: string[][]): {
   y: number;
 } {
   let validTarget = false;
-  let x: number = 0,
-    y: number = 0;
   const boardSize = board.length;
+  let x: number = Math.floor(Math.random() * boardSize);
+  let y: number = Math.floor(Math.random() * boardSize);
 
   while (!validTarget) {
-    x = Math.floor(Math.random() * boardSize);
-    y = Math.floor(Math.random() * boardSize);
-
     if (
       board[y][x] === 'killed' ||
       board[y][x] === 'shot' ||
       board[y][x] === 'miss'
     ) {
-      console.log(`Cell [${y}, ${x}] is not valid.`);
+      x = Math.floor(Math.random() * boardSize);
+      y = Math.floor(Math.random() * boardSize);
     } else {
       validTarget = true;
     }

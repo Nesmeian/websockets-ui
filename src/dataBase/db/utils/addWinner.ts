@@ -10,5 +10,4 @@ export default function addWinner(idPlayer: string): void {
     winPlayer.wins++;
   }
   updateWinners();
-  console.log(player);
 }
