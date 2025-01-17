@@ -11,5 +11,5 @@ export default function resAttack(
     console.error('cant find players Ids');
     return;
   }
-  checkAttack(opponent, target, currentPlayer, playersIds);
+  checkAttack(opponent, target, currentPlayer, playersIds, currentGame);
 }
