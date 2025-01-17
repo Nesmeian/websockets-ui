@@ -1,5 +1,5 @@
 import { Game, Player, ShipLocation } from '..//../interfacess';
-import checkAttack from '../../dataBase/db/utils/checkAttack/checkAttack';
+import checkAttack from '../../dataBase/db/utils/attack/checkAttack';
 export default function resAttack(
   target: ShipLocation,
   currentPlayer: string,

@@ -1,4 +1,4 @@
-import sendWsToChoseConnectsions from '..//..//..//..//utils/sendWsToChoseConnects';
+import sendWsToChoseConnectsions from '../../../../utils/sendWsToChoseConnects';
 import { ShipLocation } from '../../../../interfacess';
 
 export default function collectCellsIfKilled(

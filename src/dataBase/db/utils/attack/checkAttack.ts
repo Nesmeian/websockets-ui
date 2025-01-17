@@ -2,7 +2,8 @@ import { Game, Player, ShipLocation } from '../../../../interfacess';
 import checkNearSells from './checkNearSells';
 import attackData from './attackData';
 import addShottedCells from './addShottedCells';
-import turn from '..//..//..//..//controlers/response/turn';
+import turn from '../../../../controlers/response/turn';
+import finishGame from '../../../../controlers/response/finishGame';
 export default function checkAttack(
   opponent: Player,
   target: ShipLocation,
@@ -27,6 +28,9 @@ export default function checkAttack(
           shottedShip,
         );
         turn(currentGame, currentPlayer);
+        if (!opponentBoard.flat().some((e) => e === 'ship')) {
+          finishGame(currentGame, currentPlayer);
+        }
       } else {
         status = 'shot';
         attackData(currentPlayer, status, target, playersIds, opponentBoard);

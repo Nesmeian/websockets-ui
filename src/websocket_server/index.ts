@@ -4,6 +4,7 @@ import {
   addShips,
   addUser,
   createRoom,
+  randomAttack,
   regAttack,
   regUser,
   updateRoom,
@@ -40,6 +41,9 @@ ws.on('connection', async (ws: CustomWebSocket) => {
     }
     if (message.type === 'attack') {
       regAttack(message.data);
+    }
+    if (message.type === 'randomAttack') {
+      randomAttack(message.data);
     }
     console.log(terminalMessage.green, `${message.type} ${message.data}`);
   });
