@@ -15,5 +15,8 @@ export default function regAttack(message: string): void {
     return;
   }
   const currentPlayer: string = currentGame?.turn ?? '';
+  if (currentPlayer != indexPlayer) {
+    return;
+  }
   resAttack(target, currentPlayer, currentGame, opponent);
 }

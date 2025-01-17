@@ -56,5 +56,4 @@ export default function collectCellsIfKilled(
     board[y][x] = 'killed';
     sendWsToChoseConnectsions(resData, playersIds);
   });
-  console.log(board);
 }

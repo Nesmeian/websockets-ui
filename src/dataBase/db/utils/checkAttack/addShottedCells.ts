@@ -16,7 +16,6 @@ export default function addShottedShip(
     if (opponentBoard[y][newX] === 'shot') {
       ship.push({ y, x: newX });
     } else if (opponentBoard[y][newX] === 'ship') {
-      console.log('left not right');
       return false;
     } else {
       break;
@@ -31,7 +30,6 @@ export default function addShottedShip(
     if (opponentBoard[y][newX] === 'shot') {
       ship.push({ y, x: newX });
     } else if (opponentBoard[y][newX] === 'ship') {
-      console.log('right not right');
       return false;
     } else {
       break;
@@ -46,7 +44,6 @@ export default function addShottedShip(
     if (opponentBoard[newY][x] === 'shot') {
       ship.push({ y: newY, x });
     } else if (opponentBoard[newY][x] === 'ship') {
-      console.log('top not right');
       return false;
     } else {
       break;
@@ -61,14 +58,11 @@ export default function addShottedShip(
     if (opponentBoard[newY][x] === 'shot') {
       ship.push({ y: newY, x });
     } else if (opponentBoard[newY][x] === 'ship') {
-      console.log('bottom not right');
       return false;
     } else {
       break;
     }
     count++;
   }
-
-  console.log('everything is fine');
   return ship.length > 0 ? ship : false;
 }
