@@ -5,8 +5,13 @@ export interface DB {
   rooms: room[];
   games: Game[];
   users: User[];
+  wins: Wins[];
 }
 
+interface Wins {
+  name: string;
+  wins: number;
+}
 export interface Game {
   id: string;
   players?: Player[];

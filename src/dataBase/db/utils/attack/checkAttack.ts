@@ -4,6 +4,7 @@ import attackData from './attackData';
 import addShottedCells from './addShottedCells';
 import turn from '../../../../controlers/response/turn';
 import finishGame from '../../../../controlers/response/finishGame';
+import addWiner from '../addWinner';
 export default function checkAttack(
   opponent: Player,
   target: ShipLocation,
@@ -30,6 +31,7 @@ export default function checkAttack(
         turn(currentGame, currentPlayer);
         if (!opponentBoard.flat().some((e) => e === 'ship')) {
           finishGame(currentGame, currentPlayer);
+          addWiner(currentPlayer);
         }
       } else {
         status = 'shot';

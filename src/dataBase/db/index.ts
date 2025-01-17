@@ -5,6 +5,7 @@ const data: DB = {
   rooms: [],
   games: [],
   users: [],
+  wins: [],
 };
 const connectUsers: Map<string, WebSocket> = new Map();
 export { data, connectUsers };
