@@ -9,14 +9,20 @@ export default function createGame(
   indexRoom: string,
 ): void {
   const { rooms, games } = data;
-  const gameRoomIndex = rooms.findIndex(({ roomId }) => roomId === indexRoom);
-  const usersNames = searchRoomPlayersNames(indexRoom);
-  const usersIds = usersNames.map(({ id }) => id);
+  const players = searchRoomPlayersNames(indexRoom);
+  const playerNames = players.map(({ name }) => name);
+  const usersIds = players.map(({ id }) => id);
   addGameIdToUser(usersIds, indexRoom);
-  rooms.splice(gameRoomIndex, 1);
+  const usingRooms = rooms.filter((room) =>
+    room.roomUsers.some((user) => playerNames.includes(user.name ?? '')),
+  );
+  const filteredRooms = rooms.filter((room) => {
+    return !usingRooms.some((usingRoom) => usingRoom.roomId === room.roomId);
+  });
+  rooms.length = 0;
+  rooms.push(...filteredRooms);
   updateRoom(ws);
   const newGame: Game = { id: indexRoom, players: [] };
   games.push(newGame);
   console.log(`${terminalMessage.blue}`, `create game`);
-  console.log('Игры', games);
 }
