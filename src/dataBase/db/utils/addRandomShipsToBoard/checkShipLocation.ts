@@ -1,5 +1,5 @@
 export default function checkShipLocation(
-  board: string,
+  board: string[][],
   x: number,
   y: number,
 ): boolean {

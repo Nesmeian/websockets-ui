@@ -1,6 +1,6 @@
 import checkShipLocation from './checkShipLocation';
 
-export default function addLittleShips(board): void {
+export default function addSingleShips(board: string[][]): void {
   let littleShipsCount = 4;
   while (littleShipsCount > 0) {
     const randomX = Math.floor(Math.random() * length);
