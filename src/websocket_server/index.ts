@@ -2,13 +2,14 @@ import WebSocket from 'ws';
 import { CustomWebSocket, WSRes } from 'src/interfacess';
 import {
   addShips,
-  addUser,
+  addUserToRoom,
   createRoom,
   randomAttack,
   regAttack,
   regUser,
   updateRoom,
   updateWinners,
+  singlePlay,
 } from '../controlers/index';
 
 import terminalMessage from '../utils/consoleLogMessageCollor';
@@ -34,7 +35,7 @@ ws.on('connection', async (ws: CustomWebSocket) => {
       createRoom(ws);
     }
     if (message.type === 'add_user_to_room') {
-      addUser(ws, message.data);
+      addUserToRoom(ws, message.data);
     }
     if (message.type === 'add_ships') {
       addShips(ws, message.data);
@@ -44,6 +45,9 @@ ws.on('connection', async (ws: CustomWebSocket) => {
     }
     if (message.type === 'randomAttack') {
       randomAttack(message.data);
+    }
+    if (message.type === 'single_play') {
+      singlePlay(ws);
     }
     console.log(terminalMessage.green, `${message.type} ${message.data}`);
   });
