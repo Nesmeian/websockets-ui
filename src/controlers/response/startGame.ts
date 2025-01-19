@@ -3,6 +3,9 @@ import turn from '../response/turn';
 import sendWsToChoseConnectsions from '..//../utils/sendWsToChoseConnects';
 import terminalMessage from '..//../utils/consoleLogMessageCollor';
 export default function startGame(currentGame: Game): void {
+  if (currentGame.singleGame) {
+    console.log(1);
+  }
   if (currentGame.players) {
     if (currentGame.players.length > 1) {
       currentGame.players?.forEach((e, i) => {

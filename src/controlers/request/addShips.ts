@@ -23,6 +23,5 @@ export default function addShips(
     board: board,
   };
   (currentGame?.players as Player[]).push(player);
-  console.log(player.board, 'check board');
   startGame(currentGame as Game);
 }

@@ -7,6 +7,7 @@ import updateRoom from './updateRoom';
 export default function createGame(
   ws: CustomWebSocket,
   indexRoom: string,
+  singleGame?: boolean,
 ): void {
   const { rooms, games } = data;
   const players = searchRoomPlayersNames(indexRoom);
@@ -22,7 +23,11 @@ export default function createGame(
   rooms.length = 0;
   rooms.push(...filteredRooms);
   updateRoom(ws);
-  const newGame: Game = { id: indexRoom, players: [] };
+  const newGame: Game = {
+    id: indexRoom,
+    players: [],
+    singleGame: singleGame === undefined ? false : singleGame,
+  };
   games.push(newGame);
   console.log(`${terminalMessage.blue}`, `create game`);
 }

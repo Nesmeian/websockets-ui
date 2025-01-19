@@ -16,6 +16,7 @@ export interface Game {
   id: string;
   players?: Player[];
   turn?: string;
+  singleGame: boolean;
 }
 export interface User {
   name: string;

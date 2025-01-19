@@ -18,5 +18,5 @@ export default function singlePlay(ws: CustomWebSocket): void {
     ],
   };
   rooms.push(newRoom);
-  createGame(ws, createGameId);
+  createGame(ws, createGameId, true);
 }
