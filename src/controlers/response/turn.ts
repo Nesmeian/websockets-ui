@@ -13,6 +13,7 @@ export default function turn(currentGame: Game, id: string): void {
       };
       sendWsToChoseConnectsions(JSON.stringify(resData), [players.idPlayer]);
       currentGame.turn = id;
+      console.log(id, 'ID player');
       console.log(terminalMessage.blue, `Turn ${JSON.stringify(resData)}`);
     });
   }

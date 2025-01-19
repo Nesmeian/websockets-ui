@@ -7,8 +7,8 @@ export default function addMultiCellShip(
 ): void {
   let fourCellShip = ships;
   while (fourCellShip > 0) {
-    const randomX = Math.floor(Math.random() * length);
-    const randomY = Math.floor(Math.random() * length);
+    const randomX = Math.floor(Math.random() * board.length);
+    const randomY = Math.floor(Math.random() * board.length);
     const direction =
       Math.floor(Math.random() * 2) === 0 ? 'verticle' : 'horizontal';
 
@@ -17,8 +17,8 @@ export default function addMultiCellShip(
       const newRandomY = direction === 'verticle' ? randomY + i : randomY;
       const newRandomX = direction === 'horizontal' ? randomX + i : randomX;
       if (
-        newRandomY >= length ||
-        newRandomX >= length ||
+        newRandomY >= board.length ||
+        newRandomX >= board.length ||
         newRandomY < 0 ||
         newRandomX < 0
       ) {

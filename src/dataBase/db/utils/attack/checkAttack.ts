@@ -28,7 +28,7 @@ export default function checkAttack(
           opponentBoard,
           shottedShip,
         );
-        turn(currentGame, currentPlayer);
+        // turn(currentGame, currentPlayer);
         if (!opponentBoard.flat().some((e) => e === 'ship')) {
           finishGame(currentGame, currentPlayer);
           addWiner(currentPlayer);
@@ -36,15 +36,15 @@ export default function checkAttack(
       } else {
         status = 'shot';
         attackData(currentPlayer, status, target, playersIds, opponentBoard);
-        turn(currentGame, currentPlayer);
+        // turn(currentGame, currentPlayer);
       }
     } else {
       status = 'shot';
       attackData(currentPlayer, status, target, playersIds, opponentBoard);
-      turn(currentGame, currentPlayer);
+      // turn(currentGame, currentPlayer);
     }
   } else if (opponentBoard[y][x] == 'empty') {
     attackData(currentPlayer, 'miss', target, playersIds, opponentBoard);
-    turn(currentGame, opponent.idPlayer);
+    // turn(currentGame, opponent.idPlayer);
   }
 }
