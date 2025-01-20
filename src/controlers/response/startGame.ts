@@ -27,8 +27,6 @@ export default function startGame(currentGame: Game): void {
         console.log(terminalMessage.blue, `StartGame ${resData}`);
       });
       turn(currentGame, currentGame.players[0].idPlayer);
-      console.log(currentGame.players[1].ships, 'second player ships');
-      console.log(currentGame.players[1].board, 'second player board');
       return;
     }
 

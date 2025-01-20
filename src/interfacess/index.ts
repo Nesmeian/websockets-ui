@@ -16,6 +16,7 @@ export interface Game {
   id: string;
   players?: Player[];
   turn?: string;
+  attackInterval?: NodeJS.Timeout | null;
   singleGame: boolean;
 }
 export interface User {
